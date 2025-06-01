@@ -1,0 +1,50 @@
+$colors: (
+  common: (
+    white: #ffffff,
+    black: #1a1a1a, // Softer black for a modern feel
+  ),
+
+  heading: (
+    primary: #8c000a, 
+    secondary: #171151,// A slightly darker rich red for classy headings
+  ),
+
+  grey: (
+    1: #f4f4f4, // Soft off-white for section backgrounds
+  ),
+
+  text: (
+    body: #3c3c3c, // Clean readable dark gray for body text
+    1: #6c6c6c,     // Muted dark gray for secondary content
+    2: #8a8a8a,     // Light gray for captions/labels
+    3: #b0b0b0,     // Very light text like placeholders
+  ),
+
+  theme: (
+    primary: #a6000c,   // Brand red (from business card)
+    secondary: #264de4, // Refined gold tone (not too bright)
+    blue: #264de4,      // Trustworthy cobalt blue
+    pink: #d72638,      // Strong red-pink tone
+    sky: #00bcd4,       // Cyan blue for fresh accents
+  ),
+
+  border: (
+    primary: #dddddd,   // Light gray for subtle borders
+    secondary: #bdbdbd, // Darker gray for form fields/cards
+  ),
+
+  icon: (
+    blue: #264de4,
+    blue-light: #e3ecff,  // Soft background for blue icons
+    green: #264de4,       // Natural tone, suits agriculture
+    green-light: #edf7ed, // Very light green for highlights
+    pink: #d72638,
+    pink-light: #fce4ec,
+    sky: #00bcd4,
+    sky-light: #e0f7fa,
+    red: #e53935,         // Balanced strong red (alerts/errors)
+    tweet: #1da1f2,
+    fb: #4267b2,
+    skype: #00a6e4,
+  )
+);

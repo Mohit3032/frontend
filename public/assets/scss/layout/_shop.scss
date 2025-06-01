@@ -1,0 +1,465 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  19. SHOP CSS START
+/*----------------------------------------*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.shop-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.tpshopitem {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative;
+  flex-grow: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.3s;
+
+  &:hover .tpshopitem__thumb img {
+    transform: scale(1.2);
+  }
+
+  &:hover .tpshopitem__thumb-icon {
+    bottom: 14px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__thumb {
+    height: 200px;  /* Adjust height as needed */
+    width: 100%;
+    border: 1px solid #eceff4;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;  /* Change to contain to show full image */
+      transition: 1s;
+    }
+  }
+
+  &__thumb-icon {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+
+    & a {
+      margin: 0 5px;
+      height: 45px;
+      width: 45px;
+      line-height: 45px;
+      border: 1px solid var(--tp-theme-blue);
+      border-radius: 50%;
+      display: inline-block;
+      background-color: #0e63ff;
+      color: var(--tp-common-white);
+
+      &:hover {
+        background-color: var(--tp-theme-pink);
+        border: 1px solid var(--tp-theme-pink);
+      }
+    }
+  }
+
+  &__content {
+    padding: 15px;
+
+    & p {
+      font-size: 18px;
+      color: #777b83;
+      margin-bottom: 6px;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+
+    & a {
+      // background-image: linear-gradient(#0e63ff, #0e63ff), linear-gradient(#0e63ff, #0e63ff);
+      background-size: 0% 1px, 0 1px;
+      display: inline;
+
+      &:hover {
+        background-size: 0% 1px, 100% 1px;
+        color: var(--tp-theme-blue);
+      }
+    }
+  }
+}
+
+
+.tpfilter {
+  justify-content: flex-end;
+
+  & span {
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  & .nice-select {
+    padding-left: 5px;
+    border: none;
+    color: var(--tp-theme-primary);
+  }
+}
+
+/* Shop Details */
+.productthumb {
+  & img {
+    border-radius: 25px;
+    max-width: 100%;
+  }
+}
+
+.product {
+  @media #{$md, $xs} {
+    margin-left: 0;
+  }
+
+  &__details-content {
+    & p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #777b83;
+    }
+  }
+
+  &-dtitle {
+    font-weight: 400;
+    font-size: 30px;
+
+    @media #{$xs} {
+      font-size: 24px;
+    }
+  }
+
+  &-dinfo span {
+    font-weight: 500;
+    font-size: 14px;
+    color: #141515;
+  }
+
+  &-dprice {
+    font-weight: 400;
+    font-size: 30px;
+    color: #0e63ff;
+  }
+
+  &-model-title {
+    font-family: "Archivo";
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  &-quantity-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  &-quantity input {
+    color: var(--tp-theme-primary);
+    border: none;
+    width: 40px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  &-model-list a {
+    font-size: 12px;
+    font-weight: 600;
+    color: #777b83;
+    background: #f7f8fd;
+    padding: 0 10px;
+    margin-right: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 2px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background: var(--tp-theme-blue);
+      color: var(--tp-common-white);
+    }
+  }
+}
+
+.tp-product-quantity {
+  & .cart-minus,
+  & .cart-plus {
+    cursor: pointer;
+    color: #8d8884;
+    &:hover {
+      color: var(--tp-theme-primary);
+    }
+  }
+
+  & input {
+    height: 30px;
+    width: 32px;
+    font-size: 14px;
+    border: none;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.product-rating a {
+  color: #ffdc60;
+}
+
+.product-dinfo {
+  display: flex;
+}
+
+.product-dprice del {
+  font-size: 20px;
+  color: #b9b9b9;
+}
+
+.shop-left-right {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tp-comments-title {
+  font-size: 24px;
+
+  @media #{$xs} {
+    font-size: 18px;
+  }
+}
+
+.avatar-name {
+  & b {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.shop-faq {
+  & .accordion-header {
+    & button {
+      font-size: 18px;
+      padding: 20px 55px 20px 30px;
+
+      @media #{$xs} {
+        font-size: 14px;
+      }
+    }
+  }
+
+  & .accordion-content p {
+    padding: 0 75px 20px 30px;
+  }
+}
+
+.product-button {
+  & a {
+    @media #{$md} {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+/* Pagination */
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+
+  li {
+    list-style: none;
+
+    button,
+    span {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      background: #fff;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-width: 42px;
+      text-align: center;
+
+      &:hover {
+        background-color: var(--tp-theme-blue);
+        color: #fff;
+        border-color: var(--tp-theme-blue);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      &.active {
+        background-color: var(--tp-theme-blue);
+        color: #fff;
+        font-weight: bold;
+        transform: scale(1.05);
+        box-shadow: 0 0 0 2px rgba(14, 99, 255, 0.2);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      cursor: default;
+      padding: 10px;
+    }
+  }
+}
+
+.basic-pagination {
+  ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+
+      button,
+      .pagination-ellipsis,
+      .current {
+        min-width: 40px;
+        height: 40px;
+        padding: 0 12px;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #dce0e5;
+        background-color: #f7f8fa;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover:not(.pagination-ellipsis):not(.current) {
+          background-color: #0e63ff;
+          color: white;
+          border-color: #0e63ff;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
+      }
+
+      .pagination-ellipsis {
+        cursor: default;
+        pointer-events: none;
+        background-color: #f0f0f0;
+        border: 1px solid #dcdcdc;
+        color: #999;
+        font-weight: bold;
+      }
+
+      .current {
+        background-color: #0e63ff;
+        color: white;
+        border: 1px solid #0e63ff;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.pro-details-nav {
+  background: #f9fafb;
+  display: inline-block;
+  padding: 7px 7px;
+}
+.pro-details-nav-btn {
+  border: none;
+  & li {
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--tp-text-body);
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      height: 40px;
+      width: 1px;
+      background: #dfe3e9;
+      top: 50%;
+      transform: translateY(-50%);
+      @media #{$xs} {
+        display: none;
+      }
+    }
+    &::before {
+      content: "";
+      height: 100%;
+      width: 101%;
+      top: 0;
+      left: -1px;
+      background: #0e63ff;
+      position: absolute;
+      z-index: 3;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .active::before {
+      opacity: 1;
+      visibility: visible;
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+    @media #{$xs} {
+      font-size: 16px;
+    }
+    & .nav-links {
+      padding: 20px 45px;
+      border-radius: 5px;
+      @media #{$md} {
+        padding: 10px 20px;
+      }
+      @media #{$xs} {
+        padding: 5px 15px;
+      }
+      &.active {
+        background: var(--tp-theme-blue);
+        color: var(--tp-common-white);
+      }
+    }
+  }
+}

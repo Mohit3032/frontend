@@ -1,0 +1,25 @@
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0); /* transparent */
+  backdrop-filter: blur(2px); /* optional: adds a light blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: all; /* blocks clicks */
+}
+
+.blinkingLogo {
+  width: 150px;
+  animation: blink 1s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
