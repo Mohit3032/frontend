@@ -35,7 +35,7 @@ const ContactUs = () => {
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
       try {
-        const response = await axios.post("http://89.116.134.10/contacts", values);
+        const response = await axios.post("http://89.116.134.10/api/contacts", values);
         if (response.data.success) {
           toast.success(response.data.message || "Message sent successfully!");
           resetForm();
