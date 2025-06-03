@@ -96,7 +96,7 @@ const HeaderTwo = () => {
                 marginTop: "5px",
               }}
             >
-              DIVYACHEMICHALINDUSTRY
+              DIVYACHEMICAL INDUSTRY
             </p>
           </div>
 

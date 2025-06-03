@@ -8,7 +8,7 @@ const ContactUs = () => {
   return (
     <>
       <HeaderTwo />
-  
+      <Banner />
       <ContactForm />
       <FooterFour />
     </>

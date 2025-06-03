@@ -13,7 +13,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://myback-one.vercel.app/api");
+        const response = await axios.get("http://89.116.134.10/api");
         if (response.data.success) {
           const grouped = {};
 
@@ -45,7 +45,7 @@ const ProductList = () => {
   // Handle product deletion
   const handleDelete = async (categoryId, productId) => {
     try {
-      const response = await axios.post("https://myback-one.vercel.app/api/product-delete", {
+      const response = await axios.post("http://89.116.134.10/api/product-delete", {
         categoryId,
         productId,
       });
@@ -142,7 +142,7 @@ const ProductList = () => {
       formData.append("details", JSON.stringify(values.details));
 
       try {
-        const response = await axios.post("https://myback-one.vercel.app/api/product-add", formData, {
+        const response = await axios.post("http://89.116.134.10/api/product-add", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
 

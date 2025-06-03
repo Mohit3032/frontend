@@ -11,7 +11,7 @@ const Contactdata = () => {
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const response = await axios.get('https://myback-one.vercel.app/contact-info'); // Adjust the API URL if needed
+        const response = await axios.get('http://89.116.134.10/contact-info'); // Adjust the API URL if needed
         if (response.data.success) {
           setContactdata(response.data.data); // Store the contact data
         } else {

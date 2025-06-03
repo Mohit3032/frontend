@@ -22,7 +22,7 @@ const HomeOne = () => {
       <Specialists />
       {/* <Appointment /> */}
       {/* <Feedback /> */}
-      <Cta_Area />
+      {/* <Cta_Area /> */}
     
     </>
   );

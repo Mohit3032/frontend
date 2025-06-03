@@ -20,7 +20,7 @@ const Mymin = () => {
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const { data } = await axios.get('https://myback-one.vercel.app/contact-info');
+        const { data } = await axios.get('http://89.116.134.10/contact-info');
         setContactdata(data.data);
       } catch (error) {
         console.error('Failed to fetch Contact details:', error.response?.data?.error || error.message);

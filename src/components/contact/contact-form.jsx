@@ -1,7 +1,11 @@
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Loader from "@/layout/loader";
 
 // Contact Info
 const contact_info = {
@@ -24,43 +28,65 @@ const { address, phone_1, phone_2, open } = contact_info;
 
 const ContactForm = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
 
   useEffect(() => {
     setHydrated(true);
   }, []);
 
+  // Disable scrolling while loading
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [loading]);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      mobile: "",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("***Name is required"),
+      email: Yup.string().email("***Invalid email").required("***Email is required"),
+      mobile: Yup.string()
+        .required("***Mobile number is required")
+        .matches(/^[0-9]+$/, "***Must be only digits")
+        .min(7, "***Too short"),
+      message: Yup.string().required("***Message is required"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      try {
+        const response = await axios.post("http://89.116.134.10/contacts", values);
+        if (response.data.success) {
+          toast.success(response.data.message || "Message sent successfully!");
+          resetForm();
+        } else {
+          toast.error(response.data.error || "Failed to send message.");
+        }
+      } catch (error) {
+        toast.error("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
+
   useEffect(() => {
     if (hydrated && router.isReady && router.query.message) {
-      setFormData((prev) => ({
-        ...prev,
-        message: decodeURIComponent(router.query.message)
-      }));
+      formik.setFieldValue("message", decodeURIComponent(router.query.message));
     }
   }, [hydrated, router.isReady, router.query.message]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Message sent!");
-  };
-
   return (
     <>
+      {loading && <Loader />}
+
       <section className="contact-area pt-130 pb-115">
         <div className="container">
           <div className="row">
@@ -69,9 +95,7 @@ const ContactForm = () => {
               <div className="tpcontact mr-60 mb-60 wow fadeInUp" data-wow-delay=".2s">
                 <div className="tpcontact__item text-center">
                   <div className="tpcontact__icon mb-20">
-           
-  <img src="/assets/img/icon/contact-01.svg" alt="icon" />
-
+                    <img src="/assets/img/icon/contact-01.svg" alt="icon" />
                   </div>
                   <div className="tpcontact__address">
                     <h4 className="tpcontact__title mb-15">Address line</h4>
@@ -82,9 +106,7 @@ const ContactForm = () => {
               <div className="tpcontact mr-60 mb-60 wow fadeInUp" data-wow-delay=".4s">
                 <div className="tpcontact__item text-center">
                   <div className="tpcontact__icon mb-20">
-                  
-  <img src="/assets/img/icon/contact-02.svg" alt="icon" />
-
+                    <img src="/assets/img/icon/contact-02.svg" alt="icon" />
                   </div>
                   <div className="tpcontact__address">
                     <h4 className="tpcontact__title mb-15">Phone Number</h4>
@@ -96,9 +118,7 @@ const ContactForm = () => {
               <div className="tpcontact mr-60 mb-60 wow fadeInUp" data-wow-delay=".6s">
                 <div className="tpcontact__item text-center">
                   <div className="tpcontact__icon mb-20">
-                 
-  <img src="/assets/img/icon/contact-03.svg" alt="icon" />
-
+                    <img src="/assets/img/icon/contact-03.svg" alt="icon" />
                   </div>
                   <div className="tpcontact__address">
                     <h4 className="tpcontact__title mb-15">Opening Hours</h4>
@@ -112,45 +132,67 @@ const ContactForm = () => {
             <div className="col-lg-8 col-md-7 col-12">
               <div className="contactform wow fadeInRight" data-wow-delay=".4s">
                 <h4 className="contactform__title mb-35">Send us a Message :</h4>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                   <div className="row">
                     <div className="col-lg-6 mb-20">
                       <input
-                        type="text"
                         name="name"
+                        type="text"
                         placeholder="Name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.name}
                       />
+                      {formik.touched.name && formik.errors.name && (
+                        <div className="text-danger">{formik.errors.name}</div>
+                      )}
                     </div>
                     <div className="col-lg-6 mb-20">
                       <input
-                        type="email"
                         name="email"
+                        type="email"
                         placeholder="Email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
                       />
+                      {formik.touched.email && formik.errors.email && (
+                        <div className="text-danger">{formik.errors.email}</div>
+                      )}
+                    </div>
+                    <div className="col-lg-6 mb-20">
+                      <input
+                        name="mobile"
+                        type="text"
+                        placeholder="Mobile"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.mobile}
+                      />
+                      {formik.touched.mobile && formik.errors.mobile && (
+                        <div className="text-danger">{formik.errors.mobile}</div>
+                      )}
                     </div>
                     <div className="col-lg-12 mb-20">
                       <textarea
                         name="message"
                         rows="5"
                         placeholder="Message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.message}
                       ></textarea>
+                      {formik.touched.message && formik.errors.message && (
+                        <div className="text-danger">{formik.errors.message}</div>
+                      )}
                     </div>
                     <div className="col-lg-12">
-              <div className="contactform__input mb-30-btn" style={{ textAlign: "center",marginBottom:"20px" }}>
-                <button type="submit" className="tp-btn">
-                  Send Message
-                </button>
-              </div>
-            </div>
+                      <div className="contactform__input mb-30-btn" style={{ textAlign: "center", marginBottom: "20px" }}>
+                        <button type="submit" className="tp-btn">
+                          Send Message
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </form>
 

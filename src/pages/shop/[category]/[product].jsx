@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
   
     try {
       const res = await axios.get(
-        `https://myback-one.vercel.app/api/product/${category}/${product}`
+        `http://89.116.134.10/api/product/${category}/${product}`
       );
   
       const productData = res.data?.success ? res.data.data : null;
