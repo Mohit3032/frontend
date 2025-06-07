@@ -8,25 +8,26 @@ const Contactdata = () => {
   const [error, setError] = useState(null); // State for error handling
 
   // Fetch data from API
-  useEffect(() => {
-    const fetchContactData = async () => {
-      try {
-        const response = await axios.get('http://89.116.134.10/api/contact-info'); // Adjust the API URL if needed
-        if (response.data.success) {
-          setContactdata(response.data.data); // Store the contact data
-        } else {
-          setError('Failed to fetch contacts.');
-        }
-      } catch (err) {
+useEffect(() => {
+  const fetchContactData = async () => {
+    try {
+      const response = await axios.get('/api/contact-info');
+      if (response.data.success) {
+        setContactdata(response.data.data);
+      } else {
         setError('Failed to fetch contacts.');
-        console.error('Error fetching contacts:', err);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (err) {
+      setError('Failed to fetch contacts.');
+      console.error('Error fetching contacts:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchContactData(); // Call the function to fetch the data
-  }, []);
+  fetchContactData();
+}, []);
+
 
   // If data is still loading or there's an error, show a message
   if (loading) {
