@@ -11,7 +11,7 @@ const Contactdata = () => {
 useEffect(() => {
   const fetchContactData = async () => {
     try {
-      const response = await axios.get('/api/contact-info');
+      const response = await axios.get('https://divyachemicalindustry.com/api/contact-info');
       if (response.data.success) {
         setContactdata(response.data.data);
       } else {
