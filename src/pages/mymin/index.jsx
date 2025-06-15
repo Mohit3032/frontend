@@ -10,17 +10,17 @@ import HandleProduct from '@/components/Admin/HandleProduct/HandleProduct';
 const Mymin = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [contactdata, setContactdata] = useState([]);
-  const [activeTab, setActiveTab] = useState('contact'); // Set default active tab to 'contact'
+  const [activeTab, setActiveTab] = useState('contact');
+  const [sidebarOpen, setSidebarOpen] = useState(false); // For mobile sidebar toggle
 
   const handleLoginSuccess = () => {
     setLoggedIn(true); 
   };
 
-  // Fetch contact data on component mount
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const { data } = await axios.get('https://divyachemicalindustry.com/api/contact-info');
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/contact-info`);
         setContactdata(data.data);
       } catch (error) {
         console.error('Failed to fetch Contact details:', error.response?.data?.error || error.message);
@@ -29,27 +29,38 @@ const Mymin = () => {
     fetchContactData();
   }, []);
 
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    setSidebarOpen(false); // Close sidebar on mobile after click
+  };
+
   return (
     <div className={styles.adminMain}>
-      {/* Show modal if not logged in */}
       {!loggedIn && <Passwordmodal onLoginSuccess={handleLoginSuccess} />}
 
-      {/* Once logged in */}
       {loggedIn && (
         <>
-          <div className={styles.sidebar}>
+          {/* Hamburger Button */}
+          <button className={styles.hamburger} onClick={() => setSidebarOpen(!sidebarOpen)}>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+          </button>
+
+          {/* Sidebar */}
+          <div className={`${styles.sidebar} ${sidebarOpen ? styles.open : styles.sidebarHidden}`}>
             <h2>Dashboard</h2>
             <div className={styles.lists}>
               <ul>
                 <li
                   className={activeTab === 'contact' ? styles.active : ''}
-                  onClick={() => setActiveTab('contact')}
+                  onClick={() => handleTabClick('contact')}
                 >
                   Contact Us
                 </li>
                 <li
                   className={activeTab === 'products' ? styles.active : ''}
-                  onClick={() => setActiveTab('products')}
+                  onClick={() => handleTabClick('products')}
                 >
                   Update Products
                 </li>
@@ -57,14 +68,16 @@ const Mymin = () => {
             </div>
           </div>
 
+          {/* Content Area */}
           <div className={styles.content}>
-            {/* Conditionally render content based on active tab */}
             {activeTab === 'contact' && (
               <div className={styles.activeSection}>
                 <Contactdata contactdata={contactdata} />
               </div>
             )}
-            {activeTab === 'products' && <HandleProduct className={styles.activeSection} />}
+            {activeTab === 'products' && (
+              <HandleProduct className={styles.activeSection} />
+            )}
           </div>
         </>
       )}
