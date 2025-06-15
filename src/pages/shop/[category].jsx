@@ -27,7 +27,8 @@ export async function getServerSideProps(context) {
   const { category } = context.params;
 
   try {
-    const res = await axios.get(`http://89.116.134.10/api?category=${category}`);
+ const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/?category=${category}`);
+
     const products = res.data?.success ? res.data.data : [];
 
     const sanitizedProducts = products.map((product) => ({

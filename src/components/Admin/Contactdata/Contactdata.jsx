@@ -11,7 +11,7 @@ const Contactdata = () => {
 useEffect(() => {
   const fetchContactData = async () => {
     try {
-      const response = await axios.get('https://divyachemicalindustry.com/api/contact-info');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/contact-info`);
       if (response.data.success) {
         setContactdata(response.data.data);
       } else {
@@ -27,6 +27,7 @@ useEffect(() => {
 
   fetchContactData();
 }, []);
+
 
 
   // If data is still loading or there's an error, show a message

@@ -21,7 +21,8 @@ const ShopPage = ({ products }) => {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(`https://myback-one.vercel.app/api`);
+const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}`);
+
     const data = res.data?.success ? res.data.data : [];
 
     // Flatten all products from all categories

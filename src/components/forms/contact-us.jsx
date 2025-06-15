@@ -32,22 +32,22 @@ const ContactUs = () => {
         .min(7, "***Too short"),
       message: Yup.string().required("***Message is required"),
     }),
-    onSubmit: async (values, { resetForm }) => {
-      setLoading(true);
-      try {
-        const response = await axios.post("http://89.116.134.10/api/contacts", values);
-        if (response.data.success) {
-          toast.success(response.data.message || "Message sent successfully!");
-          resetForm();
-        } else {
-          toast.error(response.data.error || "Failed to send message.");
-        }
-      } catch (error) {
-        toast.error("Something went wrong. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    },
+onSubmit: async (values, { resetForm }) => {
+  setLoading(true);
+  try {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contacts`, values);
+    if (response.data.success) {
+      toast.success(response.data.message || "Message sent successfully!");
+      resetForm();
+    } else {
+      toast.error(response.data.error || "Failed to send message.");
+    }
+  } catch (error) {
+    toast.error("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+}
   });
 
   return (

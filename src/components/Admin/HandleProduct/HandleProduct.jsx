@@ -13,7 +13,8 @@ const ProductList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://89.116.134.10/api");
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}`);
+
         if (response.data.success) {
           const grouped = {};
 
@@ -45,10 +46,11 @@ const ProductList = () => {
   // Handle product deletion
   const handleDelete = async (categoryId, productId) => {
     try {
-      const response = await axios.post("http://89.116.134.10/api/product-delete", {
-        categoryId,
-        productId,
-      });
+     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/product-delete`, {
+  categoryId,
+  productId,
+});
+
       if (response.data.success) {
         alert("Product deleted successfully");
         setCategories((prev) =>
@@ -142,8 +144,9 @@ const ProductList = () => {
       formData.append("details", JSON.stringify(values.details));
 
       try {
-        const response = await axios.post("http://89.116.134.10/api/product-add", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/product-add`, formData, {
+  headers: { "Content-Type": "multipart/form-data" },
+
         });
 
         if (response.data.success && response.data.product) {

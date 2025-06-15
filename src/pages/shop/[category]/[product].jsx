@@ -44,9 +44,10 @@ export async function getServerSideProps(context) {
     const { category, product } = context.params;
   
     try {
-      const res = await axios.get(
-        `http://89.116.134.10/api/product/${category}/${product}`
-      );
+    const res = await axios.get(
+  `${process.env.NEXT_PUBLIC_API_URL}/product/${category}/${product}`
+);
+
   
       const productData = res.data?.success ? res.data.data : null;
   
