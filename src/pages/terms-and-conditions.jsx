@@ -1,13 +1,20 @@
 import React from "react";
 import Head from "next/head";
 import styles from '@/styles/policies/terms-and-conditions.module.scss';
+import SEO from "@/components/seo";
 
 const TermsAndConditions = () => {
   return (
     <>
-      <Head>
-        <title>Terms and Conditions | Divya Chemical Industry</title>
-      </Head>
+      <SEO
+        pageTitle="Divya Chemical Industry | Terms and Conditions"
+        pageDescription="Discover premium industrial, lab, and specialty chemicals from Divya Chemical Industry. Trusted quality, fast delivery, and competitive prices."
+        pageKeywords="industrial chemicals, lab chemicals, Divya Chemical Industry, chemical manufacturers India"
+        pageUrl="https://divyachemicalindustry.com"
+pageImage = "https://divyachemicalindustry.com/assets/banner.png"
+
+
+      />
       <section className={styles.wrapper}>
         <h1>Terms and Conditions</h1>
 

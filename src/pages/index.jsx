@@ -4,10 +4,18 @@ import HomeOne from "@/components/home/home/home";
 import SEO from "@/components/seo";
 import Wrapper from "@/layout/wrapper";
 
-const index = () => {
+const Index = () => {
   return (
     <Wrapper>
-      <SEO pageTitle="Home Main" />
+      <SEO
+        pageTitle="Divya Chemical Industry | Home"
+        pageDescription="Discover premium industrial, lab, and specialty chemicals from Divya Chemical Industry. Trusted quality, fast delivery, and competitive prices."
+        pageKeywords="industrial chemicals, lab chemicals, Divya Chemical Industry, chemical manufacturers India"
+        pageUrl="https://divyachemicalindustry.com"
+pageImage = "https://divyachemicalindustry.com/assets/banner.png"
+
+
+      />
       <Layout>
         <HomeOne />
       </Layout>
@@ -15,4 +23,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

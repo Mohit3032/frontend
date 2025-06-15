@@ -9,7 +9,15 @@ const formatCategory = (slug) =>
 const ShopPage = ({ category, products }) => {
   return (
     <Wrapper>
-      <SEO pageTitle={`${formatCategory(category)} Products`} />
+  
+         <SEO
+      pageTitle={`${formatCategory(category)} Products - Divya Chemical Industry`}
+        pageDescription="Get in touch with Divya Chemical Industry for inquiries, quotations, or chemical supply solutions. Fast response and reliable support."
+        pageKeywords="contact chemical supplier, Divya Chemical Industry contact, industrial chemical inquiries"
+        pageUrl="https://divyachemicalindustry.com/contact"
+        pageImage = "https://divyachemicalindustry.com/assets/banner.png"
+
+      />
       <ShopArea category={category} products={products} />
     </Wrapper>
   );

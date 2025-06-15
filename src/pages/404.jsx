@@ -7,12 +7,29 @@ const Error = () => {
   return (
     <>
       <HeaderTwo />
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "100px 20px",
+          textAlign: "center",
+        }}
+      >
         <div className="error_page">
           <Link href="/">
-           
-  <img alt=""  src="/assets/img/404.webp"/>
-
+            <img
+              alt="404 Not Found"
+              src="/assets/img/404.webp"
+              style={{
+                maxWidth: "100%",
+                width: "100%",
+                maxHeight: "500px",
+                height: "auto",
+                objectFit: "contain",
+              }}
+            />
           </Link>
         </div>
       </div>

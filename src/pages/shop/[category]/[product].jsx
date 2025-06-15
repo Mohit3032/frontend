@@ -23,8 +23,18 @@ const ProductPage = ({ productData }) => {
   return (
     <Wrapper>
       <SEO
-        pageTitle={`${getSafeText(productData.title)} - ${getSafeText(productData.details?.brand) || "Product"}`}
+        
       />
+
+          <SEO
+       pageTitle={`${getSafeText(productData.title)} - ${getSafeText(productData.details?.brand) || "Product - Divya Chemical Industry"}`} 
+        pageDescription="Get in touch with Divya Chemical Industry for inquiries, quotations, or chemical supply solutions. Fast response and reliable support."
+        pageKeywords="contact chemical supplier, Divya Chemical Industry contact, industrial chemical inquiries"
+        pageUrl="https://divyachemicalindustry.com/contact"
+        pageImage = "https://divyachemicalindustry.com/assets/banner.png"
+
+      />
+
       <ProductDetails product={productData} />
     </Wrapper>
   );
