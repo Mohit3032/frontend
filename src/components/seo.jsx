@@ -38,7 +38,8 @@ pageImage = "https://divyachemicalindustry.com/assets/banner.png",
     <meta name="twitter:site" content="@divyachemical" />
 
     {/* Favicon */}
-    <link rel="icon" href="/favicon.png" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
 
     {/* Structured Data: Schema.org for Google */}
     <script
