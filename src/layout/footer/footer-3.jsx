@@ -63,8 +63,8 @@ const FooterThree = () => {
                       <i className="flaticon-mail"></i>
                     </div>
                     <div className="footercontact__content fw-pink-content">
-                      <a href="mailto:purchase@divyachemicalindustry.com">
-                       purchase@divyachemicalindustry.com
+                      <a href="mailto:divyachemicalindustries@gmail.com">
+                       divyachemicalindustries@gmail.com
                       </a>
                       <a href="tel:+91 9104356364 ">+91 9104356364 </a>
                     </div>

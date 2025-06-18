@@ -269,3 +269,17 @@ a.meanmenu-reveal {
     transform: scale(0.7, 0.7);
   }
 }
+// Show meanmenu between 1200px and 986px
+@media (max-width: 1200px) and (min-width: 986px) {
+  a.meanmenu-reveal {
+    display: block !important;
+  }
+
+  .mean-container {
+    display: block !important;
+  }
+
+  .mean-container .mean-nav {
+    display: block !important;
+  }
+}

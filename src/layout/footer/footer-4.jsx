@@ -23,7 +23,7 @@ const FooterFour = ({ style_2 = false }) => {
                       <h4 className="tp-footer-widget__contact mb-20">
                         <Link href="tel:+91 9104356364" className="text-white">+91 9104356364</Link>
                       </h4>
-                      <Link href="mailto:  purchase@divyachemicalindustry.com" className="text-white">  purchase@divyachemicalindustry.com</Link>
+                      <Link href="mailto:  divyachemicalindustries@gmail.com" className="text-white">  divyachemicalindustries@gmail.com</Link>
                     </div>
                     <div className="tp-footer-widget__sub-sec text-white">
                       <span className="tp-footer-widget__sub-title mb-5">About Us</span>
@@ -88,7 +88,7 @@ const FooterFour = ({ style_2 = false }) => {
                       <ul>
                         <li>A/90, Natasha park-2, Nizampura, Vadodara</li>
                         <li><Link href="+91 9104356364 " className="text-white">+91 9104356364 </Link></li>
-                        <li><Link href="mailto:purchase@divyachemicalindustry.com" className="text-white">purchase@divyachemicalindustry.com</Link></li>
+                        <li><Link href="mailto:divyachemicalindustries@gmail.com" className="text-white">divyachemicalindustries@gmail.com</Link></li>
                         <li>Mon - Fri: 9AM - 6PM</li>
                         <li>Sunday: Closed</li> 
                       </ul>

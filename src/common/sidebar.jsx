@@ -88,7 +88,7 @@ const Sidebar = ({ isActive, setIsActive }) => {
           </p>
           <span>Contact Us</span>
           <a href="#"><i className="fa-solid fa-star"></i>A/90 NATASHA PARK-2, NIZAMPURA VADODARA GUJARAT</a>
-          <a href="tel:61383766284"><i className="fa-solid fa-star"></i>+91 98251 67861</a>
+          <a href="tel:98251 67861"><i className="fa-solid fa-star"></i>+91 98251 67861</a>
           <a href="mailto:divyachemicalindustries@gmail.com"><i className="fa-solid fa-star"></i>divyachemicalindustries@gmail.com</a>
         </div>
 
