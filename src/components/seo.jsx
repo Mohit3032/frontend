@@ -38,7 +38,7 @@ pageImage = "https://divyachemicalindustry.com/assets/banner.png",
     <meta name="twitter:site" content="@divyachemical" />
 
     {/* Favicon */}
-    <link rel="icon" href="/DC.png" />
+    <link rel="icon" href="/favicon.ico" />
 
     {/* Structured Data: Schema.org for Google */}
     <script
@@ -49,7 +49,7 @@ pageImage = "https://divyachemicalindustry.com/assets/banner.png",
           "@type": "Organization",
           name: "Divya Chemical Industry",
           url: "https://divyachemicalindustry.com",
-          logo: "https://divyachemicalindustry.com/DC.png",
+          logo: "https://divyachemicalindustry.com/favicon.ico",
           sameAs: [
             "https://facebook.com/divyachemicalindustry",
             "https://instagram.com/divyachemicalindustry",
@@ -57,7 +57,7 @@ pageImage = "https://divyachemicalindustry.com/assets/banner.png",
           ],
           contactPoint: {
             "@type": "ContactPoint",
-            telephone: "+91-1234567890",
+            telephone: "+91 9825167861",
             contactType: "Customer Service",
             areaServed: "IN",
             availableLanguage: ["English", "Hindi"],
