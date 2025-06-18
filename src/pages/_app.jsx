@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Loader from "../layout/loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SEO from "@/components/seo";
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+    <SEO/>
       {loading ? <Loader /> : <Component {...pageProps} />}
       <ToastContainer position="top-left" autoClose={3000} />
     </>
